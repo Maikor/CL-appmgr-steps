@@ -29,7 +29,7 @@ This workshop will use a simple topology consisting of the following devices:
 
 - R1: This is a virtual router runnining IOS-XR. The virtual router is emulating the Cisco 8000 series of routers. We will use this router to issue ```appmgr``` commands to install and run our DNS server application package. 
 
-- Clientbox: This is also a  Linux environment. You will not need to access this device. The entry for ```service1.clmel.demo ``` in our DNS server will correspond to this device's IP. We will use this to test connection to this device using ```ping```.
+- Clientbox: This is also a  Linux environment. You will not need to access this device. The entry for ```service1.cleu.demo ``` in our DNS server will correspond to this device's IP. We will use this to test connection to this device using ```ping```.
 
 ![Workshop Topology](images/topology.svg)
 
@@ -128,13 +128,13 @@ echo "packages:
     ```
     cp -r /root/bind-configs/config ~/xr-appmgr-build/bind9 
     ```
-    - You can inspect the contents of these configs. For the purposes of this demo, the DNS server contains a mapping of ```service1.clmel.demo ``` to ``` 10.1.1.34```. Once we have the DNS server running on the router, we will verify that a client (such as the Devbox) can query the router with a ```DNS WHOIS?``` and get the correct response.
+    - You can inspect the contents of these configs. For the purposes of this demo, the DNS server contains a mapping of ```service1.cleu.demo ``` to ``` 10.1.1.34```. Once we have the DNS server running on the router, we will verify that a client (such as the Devbox) can query the router with a ```DNS WHOIS?``` and get the correct response.
     <br></br>
 
     **bind-configs/db.ios-xr.tme**
     ```
     $TTL    1d ; default expiration time (in seconds) of all RRs without their own TTL value
-    @       IN      SOA     ns1.clmel.demo. root.clmel.demo. (
+    @       IN      SOA     ns1.cleu.demo. root.cleu.demo. (
                     3      ; Serial
                     1d     ; Refresh
                     1h     ; Retry
@@ -142,18 +142,18 @@ echo "packages:
                     1h )   ; Negative Cache TTL
 
     ; name servers - NS records
-        IN      NS      ns1.clmel.demo.
+        IN      NS      ns1.cleu.demo.
 
     ; name servers - A records
-    ns1.clmel.demo.             IN      A      10.1.1.1
+    ns1.cleu.demo.             IN      A      10.1.1.1
 
-    service1.clmel.demo.        IN      A      10.1.1.34
+    service1.cleu.demo.        IN      A      10.1.1.34
 
     ```
 
     **bind-configs/named.conf.local**
     ```
-    zone "clmel.demo" {
+    zone "cleu.demo" {
     type master;
     file "/etc/bind/zones/db.ios-xr.tme";
     };
@@ -394,34 +394,34 @@ nameserver 192.168.122.1
 search localdomain
 ```
 
-Now let us try issuing an `nslookup` query for the entry in our DNS Server - `service1.clmel.demo`. Your DNS server should be able to provide you with a response with the IP address of the Clientbox.
+Now let us try issuing an `nslookup` query for the entry in our DNS Server - `service1.cleu.demo`. Your DNS server should be able to provide you with a response with the IP address of the Clientbox.
 
 ```
-nslookup service1.clmel.demo
+nslookup service1.cleu.demo
 ```
 
-We should get a response with the IP address of `service1.clmel.demo` resolved:
+We should get a response with the IP address of `service1.cleu.demo` resolved:
 
 ```
-[root@localhost ~]# nslookup service1.clmel.demo
+[root@localhost ~]# nslookup service1.cleu.demo
 Server:		10.1.1.1
 Address:	10.1.1.1#53
 
-Name:	service1.clmel.demo
+Name:	service1.cleu.demo
 Address: 10.1.1.34
 ```
 
 Let us try using `ping` to reach the Clientbox. 
 
 ```
-ping service1.clmel.demo
+ping service1.cleu.demo
 ```
 
 We should be able to ping the Clientbox:
 
 ```
-[root@localhost ~]# ping service1.clmel.demo
-PING service1.clmel.demo (10.1.1.34) 56(84) bytes of data.
+[root@localhost ~]# ping service1.cleu.demo
+PING service1.cleu.demo (10.1.1.34) 56(84) bytes of data.
 64 bytes from 10.1.1.34 (10.1.1.34): icmp_seq=1 ttl=63 time=3.52 ms
 64 bytes from 10.1.1.34 (10.1.1.34): icmp_seq=2 ttl=63 time=4.88 ms
 64 bytes from 10.1.1.34 (10.1.1.34): icmp_seq=3 ttl=63 time=3.67 ms
