@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to DEVWKS-2519! This is your guide to developing and deploying your own docker applications for Cisco routers running IOS-XR software.
+Welcome to DEVWKS-2125! This is your guide to developing and deploying your own docker applications for Cisco routers running IOS-XR software.
 
 In this workshop you will learn about IOS-XR's application hosting features. We will package an open-source DNS server's docker image (Ubuntu-based bind9) into an IOS-XR supported ```.rpm``` package using appmgr build scripts (https://github.com/ios-xr/xr-appmgr-build).
 
