@@ -46,9 +46,7 @@ IOS-XR's appmgr build scripts allow you to package docker images in ```.rpm``` f
 - If the command above doesn't work, SSH to the Devbox using the Devbox IP address and port number provided to you.
 - E.g. ```ssh -p <Devbox port> root@198.18.134.1```
 
-To ensure you are connected to the correct device, make sure that your Devbox has a hostname aligned with your Seat Number.
 
-For e.g., Seat Number 5 should have a devbox hostname as `dev5`.
 
 ### Using the appmgr build scripts
 
